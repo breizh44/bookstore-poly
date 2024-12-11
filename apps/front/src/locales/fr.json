@@ -1,0 +1,40 @@
+{
+  "main": {
+    "hello": "Bonjour"
+  },
+  "book": {
+    "title": "Titre",
+    "author": "Auteur",
+    "year": "Année",
+    "genre": "Genre",
+    "action": {
+      "add": "Ajouter un livre",
+      "success": "Livre créé",
+      "failed": "Erreur lors de la création du livre - Erreur interne du serveur"
+    },
+    "error": {
+      "title": {
+        "mandatory": "Le titre est obligatoire"
+      },
+      "genre": {
+        "mandatory": "Le genre est obligatoire"
+      },
+      "year": "L'année doit être un nombre"
+    }
+  },
+  "booklist": {
+    "sort": {
+      "keys": {
+        "title": "Titre",
+        "author": "Auteur",
+        "year": "Année",
+        "genre": "Genre"
+      }
+    }
+  },
+  "chat": {
+    "actions": {
+      "send": "Envoyer"
+    }
+  }
+}

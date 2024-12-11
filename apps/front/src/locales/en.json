@@ -1,0 +1,40 @@
+{
+  "main": {
+    "hello": "Hello"
+  },
+  "book": {
+    "title": "Title",
+    "author": "Author",
+    "year": "Year",
+    "genre": "Genre",
+    "action": {
+      "add": "Add book",
+      "success": "Book created",
+      "failed": "Error on book creation - Internal server error"
+    },
+    "error": {
+      "title": {
+        "mandatory": "Title is mandatory"
+      },
+      "genre": {
+        "mandatory": "Genre is mandatory"
+      },
+      "year": "Year must be a number"
+    }
+  },
+  "booklist": {
+    "sort": {
+      "keys": {
+        "title": "Title",
+        "author": "Author",
+        "year": "Year",
+        "genre": "Genre"
+      }
+    }
+  },
+  "chat": {
+    "actions": {
+      "send": "Send"
+    }
+  }
+}
