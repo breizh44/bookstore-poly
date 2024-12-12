@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import LangSelector from './components/molecules/LangSelector.vue'
+import ViewModeSelector from './components/molecules/viewModeSelector.vue'
 </script>
 
-<template>
-  <header class="p-3 flex flex-row items-center bg-gray-900">
+<template class="font-sans">
+  <header class="p-3 flex flex-row items-center">
     <img alt="Vue logo" class="h-14" src="@/assets/book-logo.png" />
 
-    <nav class="ml-5 flex flex-row items-center gap-4 text-white font-bold text-lg">
+    <nav
+      class="ml-5 flex flex-row items-center gap-4 font-bold text-lg text-text-light dark:text-text-dark font-sans"
+    >
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/authors">Authors</RouterLink>
       <LangSelector />
+      <ViewModeSelector />
     </nav>
   </header>
 

@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-pink-200;
-}
 .poly-LgTextBold {
   @apply text-xl font-bold;
 }

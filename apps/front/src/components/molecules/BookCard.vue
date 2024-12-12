@@ -13,7 +13,11 @@ const { book } = defineProps<{ book: Book }>()
     <p>{{ book.author }}</p>
     <p>{{ book.year }}</p>
     <div>
-      <p class="rounded-full bg-blue-200 px-4 py-1 inline">{{ book.genre }}</p>
+      <p
+        class="rounded-full bg-blue-200 dark:bg-gray-700 text-text-light dark:text-text-dark px-4 py-1 inline"
+      >
+        {{ book.genre }}
+      </p>
     </div>
   </div>
 </template>
