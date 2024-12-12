@@ -42,7 +42,7 @@ const sortedFilteredAuthors = computed(() => {
 <template>
   <SearchBar v-model="searchText" />
   <SortBar v-model:sort-by="sortBy" v-model:sort-direction="sortDirection" :keylist="keyList" />
-  <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 mx-8 my-4">
+  <div class="poly-Grid">
     <AuthorCard v-for="author in sortedFilteredAuthors" :key="author.id" :author="author" />
   </div>
 </template>

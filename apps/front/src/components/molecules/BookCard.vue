@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Book } from '@/types/book.type'
+import '../../assets/main.css'
 
 const { book } = defineProps<{ book: Book }>()
 </script>
@@ -8,7 +9,7 @@ const { book } = defineProps<{ book: Book }>()
   <div
     class="bg-gray-200 border border-gray-800 rounded-lg p-4 space-y-2 hover:scale-105 hover:rotate-3 transition-all duration-200"
   >
-    <h2 class="text-xl font-bold">{{ book.title }}</h2>
+    <h2 class="poly-LgTextBold">{{ book.title }}</h2>
     <p>{{ book.author }}</p>
     <p>{{ book.year }}</p>
     <div>

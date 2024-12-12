@@ -29,4 +29,6 @@ coverage
 
 *.tsbuildinfo
 
+# Ignorer le répertoire généré par Storybook
+storybook-static/
 *storybook.log

@@ -71,7 +71,7 @@ const sortedFilteredBooks = computed(() => {
   <!-- Bouton de tri -->
   <SortBar v-model:sortBy="sortBy" v-model:sort-direction="sortDirection" :keylist="keyList" />
   <!-- Liste livres -->
-  <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 mx-8 my-4">
+  <div class="poly-Grid">
     <BookCard v-for="book in sortedFilteredBooks" :key="book.id" :book="book" />
   </div>
 </template>

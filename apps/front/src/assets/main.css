@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-pink-200;
+}
+.poly-LgTextBold {
+  @apply text-xl font-bold;
+}
+.poly-Grid {
+  @apply grid grid-cols-2 lg:grid-cols-3 gap-4 mx-8 my-4;
+}
