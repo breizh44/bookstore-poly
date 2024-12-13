@@ -3,10 +3,7 @@
   <button @click="toggleDarkMode">Basculer {{ isDarkMode ? 'Mode Clair' : 'Mode Sombre' }}</button>
   -->
 
-  <button
-    @click="toggleDarkMode"
-    class="p-2 rounded-full bg-background-light dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-  >
+  <button @click="toggleDarkMode" class="p-2 rounded-full text-gray-800 dark:text-gray-200">
     <MoonIcon v-if="isDarkMode" class="w-6 h-6" />
     <SunIcon v-else class="w-6 h-6" />
   </button>

@@ -11,8 +11,14 @@ import ViewModeSelector from './components/molecules/viewModeSelector.vue'
     <nav
       class="ml-5 flex flex-row items-center gap-4 font-bold text-lg text-text-light dark:text-text-dark font-sans"
     >
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/authors">Authors</RouterLink>
+      <RouterLink to="/" class="hover:border-blue-400 dark:hover:border-green-400 hover:border-2"
+        >Home</RouterLink
+      >
+      <RouterLink
+        to="/authors"
+        class="hover:border-blue-400 dark:hover:border-green-400 hover:border-2"
+        >Authors</RouterLink
+      >
       <LangSelector />
       <ViewModeSelector />
     </nav>

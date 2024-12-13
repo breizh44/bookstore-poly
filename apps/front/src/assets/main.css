@@ -8,3 +8,7 @@
 .poly-Grid {
   @apply grid grid-cols-2 lg:grid-cols-3 gap-4 mx-8 my-4;
 }
+
+.btn-blue {
+  @apply bg-primary-blue-500 text-white px-4 py-2 rounded-[0.5em] hover:bg-primary-blue-700;
+}

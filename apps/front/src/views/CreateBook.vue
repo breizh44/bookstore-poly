@@ -48,22 +48,22 @@ const addbook = async () => {
 </script>
 <template>
   <div class="flex flex-col gap-2 items-center">
-    <h1 class="text-xl font-bold">Create book</h1>
-    <label for="title">{{ $t('book.title') }}</label>
+    <h1 class="text-xl font-bold text-text-light dark:text-text-dark">Create book</h1>
+    <label for="title" class="text-text-light dark:text-text-dark">{{ $t('book.title') }}</label>
     <input
       class="bg-gray-200 text-black rounded-lg px-2 py-1"
       type="text"
       id="title"
       v-model="title"
     />
-    <label for="year">{{ $t('book.year') }}</label>
+    <label for="year" class="text-text-light dark:text-text-dark">{{ $t('book.year') }}</label>
     <input
       class="bg-gray-200 text-black rounded-lg px-2 py-1"
       type="text"
       id="year"
       v-model="year"
     />
-    <label for="genre">{{ $t('book.genre') }}</label>
+    <label for="genre" class="text-text-light dark:text-text-dark">{{ $t('book.genre') }}</label>
     <input
       class="bg-gray-200 text-black rounded-lg px-2 py-1"
       type="text"
