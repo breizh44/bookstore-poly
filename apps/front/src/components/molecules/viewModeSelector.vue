@@ -13,12 +13,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { MoonIcon, SunIcon } from '@heroicons/vue/24/solid'
 
 // Vérifie si le mode sombre est déjà activé dans le localStorage
 const savedMode = localStorage.getItem('darkMode') === 'true'
 const isDarkMode = ref(savedMode)
+
+onMounted(() => {
+  // Applique ou retire la classe `dark` à l'élément <html>
+  document.documentElement.classList.toggle('dark', isDarkMode.value)
+})
 
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value
