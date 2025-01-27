@@ -35,7 +35,8 @@
                                 :key="index"
                                 :d="getSectorPath(sector.startAngle, sector.endAngle)"
                                 :fill="sector.color"
-                                fill-opacity="0.5"
+                                :fill-opacity="isActiveSector(sector) ? 1.0 : 0.75"
+                                :class="{ 'transition-opacity duration-300': true }"
                             />
                         </g>
 
@@ -80,22 +81,22 @@
             </div>
 
             <!-- Liste des secteurs -->
-            <div
-                class="w-72 h-full flex flex-col gap-2 p-4 border border-gray-300 rounded-lg overflow-y-auto"
-            >
-                <label class="text-lg font-bold underline text-text-light dark:text-text-dark"
-                    >Secteurs :</label
-                >
+            <div class="w-72 h-full flex flex-col gap-2 p-4 border rounded-lg overflow-y-auto">
                 <div
                     v-for="(sector, index) in sectors"
                     :key="index"
-                    class="flex items-center gap-4 p-2"
+                    class="flex items-center gap-4 p-2 border rounded-lg transition-all duration-300"
+                    :class="[
+                        isActiveSector(sector)
+                            ? 'border-blue-500 bg-grey-500 shadow-md'
+                            : 'border-none bg-transparent',
+                    ]"
                 >
                     <div
                         class="w-5 h-5 rounded border border-gray-300 flex-shrink-0"
                         :style="{ backgroundColor: sector.color }"
                     ></div>
-                    <div class="text-sm">
+                    <div class="text-sm text-text-light dark:text-text-dark">
                         début : {{ sector.startAngle }}°, fin : {{ sector.endAngle }}°
                     </div>
                 </div>
@@ -129,6 +130,27 @@ const electrodePosition = computed(() => {
     const y = 100 + outerRadius * Math.sin(radians)
     return { x, y }
 })
+
+// Normalise un angle entre 0 et 360 degrés
+const normalizeAngle = (angle: number): number => {
+    let normalized = angle % 360
+    if (normalized < 0) normalized += 360
+    return normalized
+}
+
+// Vérifie si l'angle est dans un secteur donné
+const isActiveSector = (sector: { startAngle: number; endAngle: number }): boolean => {
+    const normalizedAngle = normalizeAngle(angle.value)
+    const start = normalizeAngle(sector.startAngle)
+    const end = normalizeAngle(sector.endAngle)
+
+    if (start < end) {
+        return normalizedAngle >= start && normalizedAngle < end
+    } else {
+        // Gère le cas où le secteur traverse 0°
+        return normalizedAngle >= start || normalizedAngle < end
+    }
+}
 
 function getSectorPath(startAngle: number, endAngle: number): string {
     const centerX = 100
