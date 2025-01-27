@@ -1,9 +1,15 @@
 <template>
-    <div class="welding-visualization">
-        <div class="main-content">
-            <div class="left-column">
-                <div class="svg-container">
-                    <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+    <div class="w-full h-[calc(100vh-90px)] p-4">
+        <div class="flex gap-8 items-start max-w-7xl h-full mx-auto">
+            <!-- Colonne gauche -->
+            <div class="flex-1 flex flex-col gap-4 h-full min-w-0">
+                <!-- Conteneur SVG -->
+                <div class="w-full relative" style="padding-bottom: min(100%, calc(100vh - 200px))">
+                    <svg
+                        class="absolute inset-0 w-full h-full border border-gray-300 bg-transparent"
+                        viewBox="0 0 200 200"
+                        preserveAspectRatio="xMidYMid meet"
+                    >
                         <!-- Masque pour remplir la zone entre les cercles -->
                         <defs>
                             <mask id="tube-mask">
@@ -60,16 +66,36 @@
                         />
                     </svg>
                 </div>
-                <div class="controls">
-                    <label for="angle">Angle (en degrés) :</label>
-                    <input id="angle" type="number" v-model.number="angle" min="0" />
+                <!-- Contrôles -->
+                <div class="flex flex-col items-center gap-2 p-2">
+                    <label for="angle" class="text-sm">Angle (en degrés) :</label>
+                    <input
+                        id="angle"
+                        type="number"
+                        v-model.number="angle"
+                        min="0"
+                        class="border border-gray-300 rounded px-2 py-1"
+                    />
                 </div>
             </div>
-            <div class="sectors-list">
-                <label>Secteurs :</label>
-                <div class="sector-item" v-for="(sector, index) in sectors" :key="index">
-                    <div class="sector-color" :style="{ backgroundColor: sector.color }"></div>
-                    <div class="sector-info">
+
+            <!-- Liste des secteurs -->
+            <div
+                class="w-72 h-full flex flex-col gap-2 p-4 border border-gray-300 rounded-lg overflow-y-auto"
+            >
+                <label class="text-lg font-bold underline text-text-light dark:text-text-dark"
+                    >Secteurs :</label
+                >
+                <div
+                    v-for="(sector, index) in sectors"
+                    :key="index"
+                    class="flex items-center gap-4 p-2"
+                >
+                    <div
+                        class="w-5 h-5 rounded border border-gray-300 flex-shrink-0"
+                        :style="{ backgroundColor: sector.color }"
+                    ></div>
+                    <div class="text-sm">
                         début : {{ sector.startAngle }}°, fin : {{ sector.endAngle }}°
                     </div>
                 </div>
@@ -140,114 +166,3 @@ const polarToCartesian = (cx: number, cy: number, radius: number, angle: number)
     }
 }
 </script>
-
-<style scoped>
-.welding-visualization {
-    width: 100%;
-    height: calc(100vh - 90px); /* Hauteur totale moins la hauteur de l'en-tête */
-    padding: 1rem;
-    box-sizing: border-box;
-}
-
-.main-content {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-    max-width: 1200px;
-    height: 100%;
-    margin: 0 auto;
-}
-
-.left-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    height: 100%;
-    min-width: 0;
-}
-
-.svg-container {
-    width: 100%;
-    height: 0;
-    padding-bottom: min(
-        100%,
-        calc(100vh - 200px)
-    ); /* Le plus petit entre un carré et la hauteur disponible */
-    position: relative;
-    flex-shrink: 0;
-}
-
-.svg-container svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #ddd;
-    background-color: transparent;
-}
-
-.controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
-}
-
-.sectors-list {
-    width: 300px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
-    background-color: transparent;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow-y: auto; /* Permet le défilement si la liste est trop longue */
-}
-
-.sector-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.5rem;
-    background-color: transparent;
-}
-
-.sector-color {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    flex-shrink: 0;
-}
-
-.sector-info {
-    font-size: 0.9rem;
-}
-
-/* Style responsive */
-@media (max-width: 768px) {
-    .welding-visualization {
-        height: auto;
-        min-height: calc(100vh - 90px);
-    }
-
-    .main-content {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .sectors-list {
-        width: 100%;
-        max-height: 300px;
-    }
-
-    .svg-container {
-        padding-bottom: 100%; /* Retour à un carré en mode mobile */
-    }
-}
-</style>
