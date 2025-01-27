@@ -46,7 +46,7 @@
                             cy="100"
                             :r="outerRadius"
                             stroke="black"
-                            stroke-width="1"
+                            stroke-width="0.5"
                             fill="none"
                         />
                         <!-- Tube interne -->
@@ -55,7 +55,7 @@
                             cy="100"
                             :r="innerRadius"
                             stroke="black"
-                            stroke-width="1"
+                            stroke-width="0.5"
                             fill="none"
                         />
                         <!-- Électrode -->
@@ -65,6 +65,17 @@
                             r="5"
                             fill="red"
                         />
+                        <g
+                            :transform="`translate(${electrodePosition.x}, ${electrodePosition.y}) rotate(${angleElectrode + 90})`"
+                        >
+                            <image
+                                width="20"
+                                height="50"
+                                x="-10"
+                                y="-25"
+                                href="@/assets/electrode.svg"
+                            />
+                        </g>
                     </svg>
                 </div>
                 <!-- Contrôles -->
@@ -77,9 +88,9 @@
                         min="0"
                         class="border border-gray-300 rounded px-2 py-1"
                     />
+                    <label>Angle Electrode (en degrés) : {{ angleElectrode }}</label>
                 </div>
             </div>
-
             <!-- Liste des secteurs -->
             <div class="w-72 h-full flex flex-col gap-2 p-4 border rounded-lg overflow-y-auto">
                 <div
@@ -129,6 +140,15 @@ const electrodePosition = computed(() => {
     const x = 100 + outerRadius * Math.cos(radians)
     const y = 100 + outerRadius * Math.sin(radians)
     return { x, y }
+})
+
+// Calculer l'angle en degrés
+const angleElectrode = computed(() => {
+    const centerX = 100
+    const centerY = 100
+    const dx = electrodePosition.value.x - centerX
+    const dy = electrodePosition.value.y - centerY
+    return (Math.atan2(dy, dx) * 180) / Math.PI // Convertir radians -> degrés
 })
 
 // Normalise un angle entre 0 et 360 degrés

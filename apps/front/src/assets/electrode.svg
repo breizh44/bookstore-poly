@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200" width="200" height="400">
+  <!-- Électrode principale -->
+  <rect x="40" y="0" width="20" height="150" fill="silver" />
+  <!-- Pointe de l'électrode -->
+  <polygon points="40,150 60,150 50,200" fill="gray" />
+</svg>
