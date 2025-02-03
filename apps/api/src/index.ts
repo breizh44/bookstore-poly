@@ -59,7 +59,7 @@ export const init = async () => {
     })
 
     server.listen(portWS, () => {
-        console.log(`Websocket lisgtening on port ${portWS}`)
+        console.log(`Websocket listening on port ${portWS}`)
     })
 }
 

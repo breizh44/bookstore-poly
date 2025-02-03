@@ -10,14 +10,16 @@ import router from './router'
 
 import en from './locales/en.json'
 import fr from './locales/fr.json'
+import '@fortawesome/fontawesome-free/css/all.css'
+import '../node_modules/flowbite-vue/dist/index.css'
 
 const i18n = createI18n({
-  locale: 'fr',
-  fallbackLocale: 'en',
-  messages: {
-    en,
-    fr,
-  },
+    locale: 'fr',
+    fallbackLocale: 'en',
+    messages: {
+        en,
+        fr,
+    },
 })
 
 const app = createApp(App)

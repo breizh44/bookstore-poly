@@ -76,6 +76,22 @@
                                 href="@/assets/electrode.svg"
                             />
                         </g>
+
+                        <!-- Animation de l'arc électrique -->
+                        <g
+                            :transform="`translate(${arcPosition.x}, ${arcPosition.y}) rotate(${angleElectrode + 90})`"
+                            class="arc-animation"
+                        >
+                            <circle
+                                v-for="(spark, index) in sparks"
+                                :key="index"
+                                :cx="spark.x"
+                                :cy="spark.y"
+                                :r="spark.size"
+                                :style="{ animationDelay: spark.delay }"
+                                class="spark"
+                            />
+                        </g>
                     </svg>
                 </div>
                 <!-- Contrôles -->
@@ -151,6 +167,22 @@ const angleElectrode = computed(() => {
     return (Math.atan2(dy, dx) * 180) / Math.PI // Convertir radians -> degrés
 })
 
+// Calculer la position de l'extrémité de l'électrode
+const arcPosition = computed(() => {
+    const radians = ((angle.value - 90) * Math.PI) / 180
+    const x = 100 + 25 * Math.cos(radians) //25 : rayon arbitraire de rotation
+    const y = 100 + 25 * Math.sin(radians)
+    return { x, y }
+})
+
+// Configuration des particules lumineuses
+const sparks = Array.from({ length: 5 }, () => ({
+    x: Math.random() * 6 - 3, // Position X aléatoire autour de l'extrémité
+    y: Math.random() * 6 - 30, // Position Y légèrement en dessous de l'électrode
+    size: Math.random(), // Taille aléatoire
+    delay: `${Math.random() * 0.5}s`, // Délai aléatoire pour l'animation
+}))
+
 // Normalise un angle entre 0 et 360 degrés
 const normalizeAngle = (angle: number): number => {
     let normalized = angle % 360
@@ -192,11 +224,11 @@ function getSectorPath(startAngle: number, endAngle: number): string {
     const y2Inner = endInner.y
 
     return `
-  M ${x1Outer} ${y1Outer}
-  A ${outerRadius} ${outerRadius} 0 ${endAngle - startAngle > 180 ? 1 : 0} 1 ${x2Outer} ${y2Outer}
-  L ${x2Inner} ${y2Inner}
-  A ${innerRadius} ${innerRadius} 0 ${endAngle - startAngle > 180 ? 1 : 0} 0 ${x1Inner} ${y1Inner}
-  Z
+M ${x1Outer} ${y1Outer}
+A ${outerRadius} ${outerRadius} 0 ${endAngle - startAngle > 180 ? 1 : 0} 1 ${x2Outer} ${y2Outer}
+L ${x2Inner} ${y2Inner}
+A ${innerRadius} ${innerRadius} 0 ${endAngle - startAngle > 180 ? 1 : 0} 0 ${x1Inner} ${y1Inner}
+Z
 `
 }
 
@@ -208,3 +240,28 @@ const polarToCartesian = (cx: number, cy: number, radius: number, angle: number)
     }
 }
 </script>
+
+<style scoped>
+/* Styles pour l'animation de l'arc électrique */
+.arc-animation .spark {
+    fill: #ffea00; /* Couleur bleu électrique */
+    opacity: 0; /* Invisible par défaut */
+    animation: spark-animation 0.3s infinite ease-in-out;
+}
+
+/* Définir l'animation des éclairs */
+@keyframes spark-animation {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+</style>

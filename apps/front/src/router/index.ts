@@ -37,6 +37,21 @@ const router = createRouter({
             name: 'welding-visualization',
             component: () => import('../views/WeldingVisualizationView.vue'),
         },
+        {
+            path: '/DashboardView',
+            name: 'dashboard',
+            component: () => import('../views/DashboardView.vue'),
+        },
+        {
+            path: '/ParameterSectors',
+            name: 'param-sectors',
+            component: () => import('../views/ParameterSectors.vue'),
+        },
+        {
+            path: '/ParameterSectorsBis',
+            name: 'param-sectors-bis',
+            component: () => import('../views/ParameterSectorsBis.vue'),
+        },
     ],
 })
 
